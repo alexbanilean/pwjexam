@@ -1,0 +1,22 @@
+meta {
+  name: Add room 3
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/rooms
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "roomNumber": "3",
+    "type": "TRIPLE",
+    "comfort": "SUPERIOR",
+    "pricePerNight": 250.0,
+    "capacity": 3,
+    "status": "OCCUPIED"
+  }
+}
