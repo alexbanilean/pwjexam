@@ -3,7 +3,6 @@ package com.unibuc.pwjexam.controller;
 import com.unibuc.pwjexam.dto.AddRoomDto;
 import com.unibuc.pwjexam.mapper.RoomMapper;
 import com.unibuc.pwjexam.model.Room;
-import com.unibuc.pwjexam.repository.RoomRepository;
 import com.unibuc.pwjexam.service.RoomService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +23,14 @@ public class RoomController {
     }
 
     @PostMapping
-    public ResponseEntity<Room> create(
+    public ResponseEntity<Room> add(
             @RequestBody
             @Valid
             AddRoomDto addRoomDto) {
         Room room = roomMapper.toRoom(addRoomDto);
-        Room createdRoom = roomService.add(room);
-        return ResponseEntity.created(URI.create("/rooms" + createdRoom.getId()))
-                .body(createdRoom);
+        Room addedRoom = roomService.add(room);
+        return ResponseEntity.created(URI.create("/rooms/" + addedRoom.getId()))
+                .body(addedRoom);
     }
 
     @DeleteMapping("/{id}")
